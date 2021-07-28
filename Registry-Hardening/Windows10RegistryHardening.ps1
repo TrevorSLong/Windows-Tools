@@ -1,14 +1,13 @@
-## This script handles the hardening of a Windows thin client computer
+## This script handles the hardening of a Windows 10 computer
 #Written by Trevor Long, last modified 7-19-21
 
 $null = Read-Host '
 README:
 ---------------------------------------------------------------------------------------------------------------------------------
-This script is designed to automate much of the Thin Client Hardening Process, some parts may fail and need to be run manually.
+This script is designed to automate much of the Windows 10 Registry Hardening Process, some parts may fail and need to be run manually.
 This script adds/changes many registry values, this has the possiblility to break the operating system,
 a restore point should be made, but to ensure you have a backup, go make a restore point manually.
 Once the script has finished, check for error and correct any manually if needed.
-For questions, bugs, or suggestions email Trevor: trevor.long@woodward.com
 ---------------------------------------------------------------------------------------------------------------------------------
 By clicking ENTER you agree to have read the above comment, and understand the script and its author take no responsibility if 
 it breaks Windows.
