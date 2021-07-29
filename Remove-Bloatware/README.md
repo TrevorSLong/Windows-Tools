@@ -92,7 +92,11 @@ This script automates the process of uninstalling Windows 10 bloatware. You can 
     Microsoft.Microsoft3DViewer
     Microsoft.WindowsFeedbackHub
 
-    ## Running PowerShell Scripts
+## Running the .exe file:
+   * Right click the .exe and "Run as administrator"
+   * Follow the on-screen directions
+
+## Running PowerShell Scripts
    * This is just one of many ways PowerShell scripts can be run as Admin. One of the least efficient but its easy for those unfamiliar with CLI.
 
    1. Search for "PowerShell" and click "Run ISE as Administrator"

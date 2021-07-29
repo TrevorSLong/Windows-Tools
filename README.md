@@ -1,5 +1,5 @@
 # Windows-Tools:
-This repository contains batch files used to automate computer cleanup using built in Windows utilities. Made for Windows 10, will also probably work on Windows 8, 8.1, and 11.
+This repository contains batch files used to automate computer cleanup using built in Windows utilities. Made for Windows 10, will also probably work on Windows 8, 8.1, and 11. All scripts **Must be run as Administrator**. If you need help running these scripts scroll down to the directions.
 
 # Scripts:
 ### Cleanup-Script
@@ -20,6 +20,10 @@ This repository contains batch files used to automate computer cleanup using bui
    * Disables Cortana through the registry
    * This is a .ps1 file, run PowerShell as Admin or follow the directions below.
 
+### Remove-Bloatware
+   * Automatically removes Windows bloatware using levels listed on the Remove-Bloatware README
+   * Optional one-by-one removal of bloatware for better customization
+
 # Other:
 
 ### Components:
@@ -28,8 +32,9 @@ This repository contains batch files used to automate computer cleanup using bui
 ### Screenshots:
    * Screenshots for README.md tutorials.
 
-
-
+## Running the .exe file
+   * Right click the .exe file and click "Run as Administrator"
+   * A CMD window should pop up, follow the on screen directions.
 
 ## Running PowerShell Scripts
    * This is just one of many ways PowerShell scripts can be run as Admin. One of the least efficient but its easy for those unfamiliar with CLI.
