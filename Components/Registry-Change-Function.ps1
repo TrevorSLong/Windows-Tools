@@ -1,5 +1,5 @@
-#Fully-Disable-Cortana.ps1
-#Disables Cortana on Windows 10 via the registry
+# This code is a function that is used in many of the other scripts to help change registry values and check for errors
+# Written by Trevor Long, last modified 7-29-21
 
 Function Test-RegistryValue {
     param(
@@ -76,31 +76,9 @@ Function ChangeRegValues {
     }
 }
 
-$disablecortana = Read-Host "
-Would you like to disable or enable Cortana via the registry?
-Type 'E' for enable or 'D' for disable:
-"
-if ($disablecortana -eq 'D'){
-  
-    $pathexist = Test-RegistryValue -Path 'HKLM:\SOFTWARE\Policies\Microsoft\Windows\Windows Search' -Name 'AllowCortana'
-    if ($pathexist -eq $False) {
-        New-Item -Path 'HKLM:\SOFTWARE\Policies\Microsoft\Windows' -Name 'Windows Search'
-    }
-  
-    $regpath =  "HKLM:\SOFTWARE\Policies\Microsoft\Windows\Windows Search"
-    $regname = "AllowCortana"
-    $regvalue = 0
-    $regnick = "AllowCortana"
-    $regtype = 'DWORD'
-    ChangeRegValues -regpath $regpath -regname $regname -regvalue $regvalue -regnick $regnick -regtype $regtype
-}
-else { 
-
-    $regpath =  "HKLM:\SOFTWARE\Policies\Microsoft\Windows\Windows Search"
-    $regname = "AllowCortana"
-    $regvalue = 1
-    $regnick = "AllowCortana"
-    $regtype = 'DWORD'
-    ChangeRegValues -regpath $regpath -regname $regname -regvalue $regvalue -regnick $regnick -regtype $regtypek
-}
-
+#Example for how to use the function
+#$regpath =  "HKLM:\System\CurrentControlSet\Services\XboxNetApiSvc"
+#$regname = "Start"
+#$regvalue = 4
+#$regnick = "XboxNetCpiSvc"
+#ChangeRegValues -regpath $regpath -regname $regname -regvalue $regvalue -regnick $regnick -regtype $regtype 

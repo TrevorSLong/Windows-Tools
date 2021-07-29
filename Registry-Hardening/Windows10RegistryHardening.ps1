@@ -20,10 +20,8 @@ Attempting to create restore point........
 "
 Checkpoint-Computer -Description "RestorePoint1" -RestorePointType "MODIFY_SETTINGS"
 
-#Function that checks to see if a registry value exists
 Function Test-RegistryValue {
     param(
-        [Alias("PSPath")]
         [Parameter(Position = 0, Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
         [String]$Path
         ,
@@ -50,9 +48,7 @@ Function Test-RegistryValue {
         }
     }
 }
-
-#Function that takes inputs and changes registry values, makes sure they changed, then provides user feedback
-function ChangeRegValues {
+Function ChangeRegValues {
     param(
         [Parameter(Position = 0, Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
         [String]$regpath
@@ -66,12 +62,15 @@ function ChangeRegValues {
         [Parameter(Position = 3, Mandatory = $true)]
         [String]$regnick
         ,
+        [Parameter(Position = 4, Mandatory = $false)]
+        [String]$regtype
+        ,
         [Switch]$PassThru
     ) 
     process{
         if (Test-RegistryValue -Path $regpath -Name $regname ){
 
-            Set-ItemProperty -Path $regpath -Name $regname -Value $regvalue
+            Set-ItemProperty -Path $regpath -Name $regname -Value $regvalue -Type $regtype
             $regvaluecheck = Get-ItemPropertyValue -Path $regpath -Name $regname
 
             if( $regvalue -eq $regvaluecheck){
@@ -82,7 +81,7 @@ function ChangeRegValues {
             }
         }
         else {
-            New-ItemProperty -Path $regpath -Name $regname -Value $regvalue
+            New-ItemProperty -Path $regpath -Name $regname -Value $regvalue -Type $regtype
             $regvaluecheck = Get-ItemPropertyValue -Path $regpath -Name $regname
 
             if( $regvalue -eq $regvaluecheck){

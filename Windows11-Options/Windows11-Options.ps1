@@ -1,6 +1,8 @@
-#Fully-Disable-Cortana.ps1
-#Disables Cortana on Windows 10 via the registry
+# Windows11-Options.ps1 - this script aims to make it easy to disable some parts of Windows 11 that are not necessary
 
+$dewidgets = Read-Host "Would you like to disable/enable widgets? Type 'D' to disable and 'E' to enable:"
+$decortana = Read-Host "Would you like to disable Cortana for the current user 'D', disable for all users 'A', or to skip hit ENTER:"
+$taskbar = Read-Host "Would you like to move the taskbar? Type 'L' for LEFT, 'C' for CENTER, or ENTER to skip"
 Function Test-RegistryValue {
     param(
         [Parameter(Position = 0, Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
@@ -76,31 +78,43 @@ Function ChangeRegValues {
     }
 }
 
-$disablecortana = Read-Host "
-Would you like to disable or enable Cortana via the registry?
-Type 'E' for enable or 'D' for disable:
-"
-if ($disablecortana -eq 'D'){
-  
-    $pathexist = Test-RegistryValue -Path 'HKLM:\SOFTWARE\Policies\Microsoft\Windows\Windows Search' -Name 'AllowCortana'
-    if ($pathexist -eq $False) {
-        New-Item -Path 'HKLM:\SOFTWARE\Policies\Microsoft\Windows' -Name 'Windows Search'
-    }
-  
-    $regpath =  "HKLM:\SOFTWARE\Policies\Microsoft\Windows\Windows Search"
-    $regname = "AllowCortana"
+if ($dewidgets -eq 'D'){
+    $regpath =  "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced"
+    $regname = "TaskbarDa"
     $regvalue = 0
-    $regnick = "AllowCortana"
+    $regnick = "TaskbarDa"
     $regtype = 'DWORD'
     ChangeRegValues -regpath $regpath -regname $regname -regvalue $regvalue -regnick $regnick -regtype $regtype
 }
-else { 
-
-    $regpath =  "HKLM:\SOFTWARE\Policies\Microsoft\Windows\Windows Search"
-    $regname = "AllowCortana"
+if ($dewidgets -eq 'E'){
+    $regpath =  "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced"
+    $regname = "TaskbarDa"
     $regvalue = 1
-    $regnick = "AllowCortana"
+    $regnick = "TaskbarDa"
     $regtype = 'DWORD'
-    ChangeRegValues -regpath $regpath -regname $regname -regvalue $regvalue -regnick $regnick -regtype $regtypek
+    ChangeRegValues -regpath $regpath -regname $regname -regvalue $regvalue -regnick $regnick -regtype $regtype
 }
 
+if ($decortana -eq 'D') {
+    Get-AppxPackage *Microsoft.549981C3F5F10* | Remove-AppxPackage
+}
+if ($decortana -eq 'A') {
+    Get-appxpackage -allusers *Microsoft.549981C3F5F10* | Remove-AppxPackage
+}
+
+if ($taskbar -eq 'L'){
+    $regpath =  "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced"
+    $regname = "TaskbarAl"
+    $regvalue = 0
+    $regnick = "TaskbarAl"
+    $regtype = 'DWORD'
+    ChangeRegValues -regpath $regpath -regname $regname -regvalue $regvalue -regnick $regnick -regtype $regtype
+}
+if ($taskbar -eq 'C'){
+    $regpath =  "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced"
+    $regname = "TaskbarAl"
+    $regvalue = 1
+    $regnick = "TaskbarAl"
+    $regtype = 'DWORD'
+    ChangeRegValues -regpath $regpath -regname $regname -regvalue $regvalue -regnick $regnick -regtype $regtype
+}
