@@ -198,19 +198,22 @@ $regpath = "HKLM:\Software\Microsoft\Windows\CurrentVersion\Policies\System"
 $regname = "LocalAccountTokenFilterPolicy"
 $regvalue = 1
 $regnick = "LocalAccountTokenFilterPolicy"
-ChangeRegValues -regpath $regpath -regname $regname -regvalue $regvalue -regnick $regnick
+$regtype = "DWORD"
+ChangeRegValues -regpath $regpath -regname $regname -regvalue $regvalue -regnick $regnick -regtype $regtype
 #PreventOverrideAppRepUnknown
 $regpath = "HKLM:\Software\Policies\Microsoft\MicrosoftEdge\PhishingFilter"
 $regname = "PreventOverrideAppRepUnknown"
 $regvalue = 1
 $regnick = "PreventOverrideAppRepUnknown"
-ChangeRegValues -regpath $regpath -regname $regname -regvalue $regvalue -regnick $regnick
+$regtype = "DWORD"
+ChangeRegValues -regpath $regpath -regname $regname -regvalue $regvalue -regnick $regnick -regtype $regtype
 #fClientDisableUDP
 $regpath = "HKLM:\Software\Policies\Microsoft\Windows NT\Terminal Services\Client"
 $regname = "fClientDisableUDP"
 $regvalue = 1
 $regnick = "fClientDisableUDP"
-ChangeRegValues -regpath $regpath -regname $regname -regvalue $regvalue -regnick $regnick
+$regtype = "DWORD"
+ChangeRegValues -regpath $regpath -regname $regname -regvalue $regvalue -regnick $regnick -regtype $regtype
 
 $null = Read-Host '
 ---------------------------------------------------------------------------------------------------------------------------------
