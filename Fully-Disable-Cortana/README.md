@@ -1,35 +1,5 @@
-# Windows-Tools:
-This repository contains batch files used to automate computer cleanup using built in Windows utilities. Made for Windows 10, will also probably work on Windows 8, 8.1, and 11.
-
-# Scripts:
-### Cleanup-Script
-   * Designed for Windows 10
-   * Cleanup script to help optimize Windows performance
-   * This is a .bat file, right click and run as administrator
-
-### Windows-Update-Cache-Cleanup
-   * Stops Windows services and deletes the Windows update cache to fix issues with Windows update
-   * This is a .bat file, right click and run as administrator
-
-### Registry-Hardening
-   * This script changes registry values to harden a Windows installation.
-   * This is a .ps1 file, run PowerShell as Admin or follow the directions below.
-
-### Fully-Disable-Cortana
-   * This is designed for Windows 10
-   * Disables Cortana through the registry
-   * This is a .ps1 file, run PowerShell as Admin or follow the directions below.
-
-# Other:
-
-### Components:
-   * A bunch of smaller functions and scripts used to make the other scripts, they may be helpful for scripts you write yourself
-
-### Screenshots:
-   * Screenshots for README.md tutorials.
-
-
-
+# Fully-Disable-Cortana.ps1
+This script disables Cortana on Windows 10 through the registry. It must be run as administrator to work.
 
 ## Running PowerShell Scripts
    * This is just one of many ways PowerShell scripts can be run as Admin. One of the least efficient but its easy for those unfamiliar with CLI.

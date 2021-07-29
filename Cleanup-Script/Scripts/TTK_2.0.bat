@@ -42,7 +42,7 @@ echo three >%~dp0current.txt
 ::Section 2
 ECHO ============================
 ECHO Calling DISM script
-@start %~d0%\TCS\Scripts\TTK_DISM.bat
+@start %~d0%\Cleanup-Script\Scripts\TTK_DISM.bat
 ECHO Complete! Please wait for DISM script to complete and restart computer.
 ECHO ============================
 ECHO -DO NOT TOUCH, AUTOMATION IN PROGRESS-

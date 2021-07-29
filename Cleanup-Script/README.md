@@ -1,7 +1,7 @@
 ## Cleanup-Script User Manual
    * Download the repository
    * Extract the files
-   * Move the `Windows-Update-Cleanup` folder to the root of a flash drive
+   * Move the `Cleanup-Script` folder to the root of a flash drive
    * Double click the "Run TCS V2.0" Shortcut
    * When asked Y/N type "Y" and hit enter
    * Everytime the script restarts you will need to login

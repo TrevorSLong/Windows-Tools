@@ -1,2 +1,2 @@
 @ECHO OFF
-@start TCS\TTK_DISM.bat
+@start Windows-Tools\TTK_DISM.bat
