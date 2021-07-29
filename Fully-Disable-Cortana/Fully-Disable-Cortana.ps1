@@ -80,6 +80,10 @@ $disablecortana = Read-Host "
 Would you like to disable or enable Cortana via the registry?
 Type 'E' for enable or 'D' for disable:
 "
+$deletecortana = Read-Host "
+Would you like to delete Cortana (youll need to reinstall through the Microsoft Store?
+Type 'Y' to delete Cortana, 'A' to delete Cortana for ALL USERS, or ENTER to skip:"
+
 if ($disablecortana -eq 'D'){
   
     $pathexist = Test-RegistryValue -Path 'HKLM:\SOFTWARE\Policies\Microsoft\Windows\Windows Search' -Name 'AllowCortana'
@@ -101,6 +105,12 @@ else {
     $regvalue = 1
     $regnick = "AllowCortana"
     $regtype = 'DWORD'
-    ChangeRegValues -regpath $regpath -regname $regname -regvalue $regvalue -regnick $regnick -regtype $regtypek
+    ChangeRegValues -regpath $regpath -regname $regname -regvalue $regvalue -regnick $regnick -regtype $regtype
 }
 
+if ($deletecortana -eq 'Y') {
+    Get-AppxPackage *Microsoft.549981C3F5F10* | Remove-AppxPackage
+}
+if ($deletecortana -eq 'A') {
+    Get-appxpackage -allusers *Microsoft.549981C3F5F10* | Remove-AppxPackage
+}
