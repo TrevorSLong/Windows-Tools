@@ -5,3 +5,7 @@ This part of the repository has smaller code snippets that are used in other scr
    * This is two functions that together can change or add registry entries.
    * It first checks to make sure the value exists, then it either adds or modifies the value.
    * It then checks to make sure that the value was successfully changed and outputs the results.
+
+### Test-Regpath
+   * This function allows a user to check whether a path in the registry exists
+   * Optionally, the user can check whether a path exists at a per level basis
