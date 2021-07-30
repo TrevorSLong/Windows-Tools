@@ -1,5 +1,5 @@
 ## Windows10RegistryHardening.ps1
-Windows10RegistryHardening.ps1 takes care of many of the registry and services changes to help the security of Windows 10 systems. A full list of what is changed is below the instructions on how to run the script. Contact trevor.long@woodward.com with issues.
+Windows10RegistryHardening.ps1 takes care of many of the registry and services changes to help the security of Windows 10 systems. A full list of what is changed is below the instructions on how to run the script. **Important:** this script may break your Windows installation. Please have a backup and a restore point made before running the tool.
 
 #### Running the script:
 * Search for "Create a restore point"
