@@ -12,7 +12,7 @@
 # -------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
-Function Validate-RegPath {
+Function Test-RegPathExist {
     param(
         [Parameter(Position = 0, Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
         [String]$regpath
@@ -24,6 +24,7 @@ Function Validate-RegPath {
         $wholetrue = Test-Path $regpath
         if ( $wholetrue -eq $True ) {
             Write-Host "$regpath exists entirely." -ForegroundColor Green
+            $true
         }
         else {
             $brokenregpath = $regpath.Split("\")
@@ -38,7 +39,6 @@ Function Validate-RegPath {
                 $counter = $counter + 1
                 $doesexist = Test-Path $bregpathj
             }
-            $blastregpath = $lastbregpath.Split("\")
             Write-Host $lastbregpath -ForegroundColor Green -NoNewline
             $notexist = $regpath.Replace($lastbregpath,"")
             Write-Host $notexist -ForegroundColor Red
@@ -46,6 +46,7 @@ Function Validate-RegPath {
             Write-Host "The path exists up to $lastbregpath" -ForegroundColor Green
             Write-Host "The path does not exist past $notexist" -ForegroundColor Red
             Write-Host "--------------------------------------------------------"
+            $false
         }
     }
 }

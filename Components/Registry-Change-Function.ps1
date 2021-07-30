@@ -1,6 +1,44 @@
 # This code is a function that is used in many of the other scripts to help change registry values and check for errors
 # Written by Trevor Long, last modified 7-29-21
 
+Function Test-RegPathExist {
+    param(
+        [Parameter(Position = 0, Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+        [String]$regpath
+        ,
+        [Switch]$PassThru
+    ) 
+    process {
+        
+        $wholetrue = Test-Path $regpath
+        if ( $wholetrue -eq $True ) {
+            Write-Host "$regpath exists entirely." -ForegroundColor Green
+            $true
+        }
+        else {
+            $brokenregpath = $regpath.Split("\")
+            $bregpath = $brokenregpath | Select-Object -First 1
+            $bregpathj = $bregpath -join "\"
+            $counter = 2
+            $doesexist = Test-Path $bregpathj
+            while ( $doesexist -eq $True ) {
+                $lastbregpath = $bregpathj
+                $bregpath = $brokenregpath | Select-Object -First $counter
+                $bregpathj = $bregpath -join "\"
+                $counter = $counter + 1
+                $doesexist = Test-Path $bregpathj
+            }
+            Write-Host $lastbregpath -ForegroundColor Green -NoNewline
+            $notexist = $regpath.Replace($lastbregpath,"")
+            Write-Host $notexist -ForegroundColor Red
+            Write-Host "--------------------------------------------------------"
+            Write-Host "The path exists up to $lastbregpath" -ForegroundColor Green
+            Write-Host "The path does not exist past $notexist" -ForegroundColor Red
+            Write-Host "--------------------------------------------------------"
+            $false
+        }
+    }
+}
 Function Test-RegistryValue {
     param(
         [Parameter(Position = 0, Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
@@ -59,9 +97,12 @@ Function ChangeRegValues {
             }
             else {
                 Write-Host "$regnick value change fail! Value is still $regvaluecheck! Please change this key manually" -ForegroundColor Red
+                break
             }
         }
         else {
+            Test-RegPathExist -regpath $regpath
+            New-Item -Path $regpath -Force
             New-ItemProperty -Path $regpath -Name $regname -Value $regvalue -Type $regtype
             $regvaluecheck = Get-ItemPropertyValue -Path $regpath -Name $regname
 
