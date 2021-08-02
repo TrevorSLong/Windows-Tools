@@ -1,5 +1,6 @@
 # New-GUI.ps1
 # This function allows a dialog to be opened and 5 values to be inputted to be passed as an object to a script
+# This currently isn't working in my VSCode but is working in PowerShell ISE
 # This script is based on the script from https://techwizard.cloud/2014/03/11/powershell-custom-gui-input-box-for-passing-values-to-variables/
 # This was modified by Trevor Long on 8-2-21
 #--------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -20,8 +21,8 @@
 #--------------------------------------------------------------------------------------------------------------------------------------------------------------------
 function New-GUI ($title, $label1, $label2, $label3, $label4, $label5) {
     
-    [System.Reflection.Assembly]::LoadWithPartialName( “System.Windows.Forms”) | Out-Null
-    [System.Reflection.Assembly]::LoadWithPartialName( “Microsoft.VisualBasic”) | Out-Null
+    [System.Reflection.Assembly]::LoadWithPartialName( 'System.Windows.Forms' ) | Out-Null
+    [System.Reflection.Assembly]::LoadWithPartialName( 'Microsoft.VisualBasic' ) | Out-Null
     
     $form = New-Object “System.Windows.Forms.Form”;
     $form.Width = 500;
@@ -119,17 +120,3 @@ function New-GUI ($title, $label1, $label2, $label3, $label4, $label5) {
     
     return $textBox1.Text, $textBox2.Text, $textBox3.Text, $textBox4.Text, $textBox5.Text
     }
-
-$userinputs = New-GUI -title "Please enter the number" -label1 "Number 1" -label2 "Number 2" -label3 "Number 3" -label4 "Number 4" -label5 "Number 5"
-
-$number1 = $userinputs | Select-Object -Index 0
-$number2 = $userinputs | Select-Object -Index 1
-$number3 = $userinputs | Select-Object -Index 2
-$number4 = $userinputs | Select-Object -Index 3
-$number5 = $userinputs | Select-Object -Index 4
-
-Write-Host $number1
-Write-Host $number2
-Write-Host $number3
-Write-Host $number4
-Write-Host $number5
