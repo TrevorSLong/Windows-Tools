@@ -68,8 +68,8 @@ o	Change the value to `2`
 
  
 # Git Command
-`git clone https://github.com/DroTron/Windows-Tools`
+`git clone https://github.com/trevorslong/Windows-Tools`
 *  Clones entire repository
 *  add `~/FOLDER/SUBFOLDER` after PROGRAM.m to clone to specific folder
-   * Ex: `git clone https://github.com/DroTron/Windows-Tools ~/Windows-Tools`
+   * Ex: `git clone https://github.com/trevorslong/Windows-Tools ~/Windows-Tools`
    * to clone repository to a folder in home named Windows-Tools
