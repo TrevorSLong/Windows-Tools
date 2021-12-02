@@ -24,6 +24,15 @@ This repository contains batch files used to automate computer cleanup using bui
    * Automatically removes Windows bloatware using levels listed on the Remove-Bloatware README
    * Optional one-by-one removal of bloatware for better customization
 
+### Disable-Windows-Auto-Update
+   * Enables/Disables Windows Auto-Update through the registry
+
+### Windows11-Options
+   * Enables/Disables Windows Auto-Update through the registry
+   * Enables/Disables the widgets panel and removes it from the taskbar
+   * Uninstalls Cortana for all users or just the current user
+   * Allows user to toggle taskbar alignment from Center to Left and back. (Through registry, this can also be done in settings)
+
 # Other:
 
 ### Components:

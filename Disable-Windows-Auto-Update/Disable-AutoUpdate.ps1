@@ -1,9 +1,6 @@
-# Windows11-Options.ps1 - this script aims to make it easy to disable some parts of Windows 11 that are not necessary
+# Disable-AutoUpdate.ps1 - this script aims to make it easy to disable Windows auto update
 
-$dewidgets = Read-Host "Would you like to disable/enable widgets? Type 'D' to disable and 'E' to enable:"
-$decortana = Read-Host "Would you like to disable Cortana for the current user 'D', disable for all users 'A', or to skip hit ENTER:"
-$taskbar = Read-Host "Would you like to move the taskbar? Type 'L' for LEFT, 'C' for CENTER, or ENTER to skip"
-$deupdate = Read-Host "Would you like Enable or Disable Windows Auto-Updates through the registry? Type E or D or ENTER to skip."
+$deupdate = Read-Host "Would you like Enable or Disable Windows Auto-Updates through the registry? Type E or D then hit enter. "
 Function Test-RegPathExist {
     param(
         [Parameter(Position = 0, Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
@@ -118,47 +115,6 @@ Function ChangeRegValues {
         
         }
     }
-}
-
-if ($dewidgets -eq 'D'){
-    $regpath =  "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced"
-    $regname = "TaskbarDa"
-    $regvalue = 0
-    $regnick = "TaskbarDa"
-    $regtype = 'DWORD'
-    ChangeRegValues -regpath $regpath -regname $regname -regvalue $regvalue -regnick $regnick -regtype $regtype
-}
-if ($dewidgets -eq 'E'){
-    $regpath =  "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced"
-    $regname = "TaskbarDa"
-    $regvalue = 1
-    $regnick = "TaskbarDa"
-    $regtype = 'DWORD'
-    ChangeRegValues -regpath $regpath -regname $regname -regvalue $regvalue -regnick $regnick -regtype $regtype
-}
-
-if ($decortana -eq 'D') {
-    Get-AppxPackage *Microsoft.549981C3F5F10* | Remove-AppxPackage
-}
-if ($decortana -eq 'A') {
-    Get-appxpackage -allusers *Microsoft.549981C3F5F10* | Remove-AppxPackage
-}
-
-if ($taskbar -eq 'L'){
-    $regpath =  "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced"
-    $regname = "TaskbarAl"
-    $regvalue = 0
-    $regnick = "TaskbarAl"
-    $regtype = 'DWORD'
-    ChangeRegValues -regpath $regpath -regname $regname -regvalue $regvalue -regnick $regnick -regtype $regtype
-}
-if ($taskbar -eq 'C'){
-    $regpath =  "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced"
-    $regname = "TaskbarAl"
-    $regvalue = 1
-    $regnick = "TaskbarAl"
-    $regtype = 'DWORD'
-    ChangeRegValues -regpath $regpath -regname $regname -regvalue $regvalue -regnick $regnick -regtype $regtype
 }
 
 if ($deupdate -eq 'D'){
