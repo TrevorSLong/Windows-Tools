@@ -5,6 +5,7 @@ $decortana = Read-Host "Would you like to disable Cortana for the current user '
 $taskbar = Read-Host "Would you like to move the taskbar? Type 'L' for LEFT, 'C' for CENTER, or ENTER to skip"
 $deupdate = Read-Host "Would you like Enable or Disable Windows Auto-Updates through the registry? E to enable, D to disable, ENTER to skip:"
 $debing = Read-Host "Would you like to remove Bing from the start menu? E to enable, D to disable, ENTER to skip:"
+$delockscreen = Read-Host "Would you like to disable the lock screen? E to enable, D to disable, ENTER to skip:"
 Function Test-RegPathExist {
     param(
         [Parameter(Position = 0, Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
@@ -140,7 +141,7 @@ if ($dewidgets -eq 'E'){
 if ($debing -eq 'E'){
     $regpath =  "HKCU:\SOFTWARE\Policies\Microsoft\Windows\Explorer"
     $regname = "DisableSearchBoxSuggestions"
-    $regvalue = 1
+    $regvalue = 0
     $regnick = "DisableSearchBoxSuggestions"
     $regtype = 'DWORD'
     ChangeRegValues -regpath $regpath -regname $regname -regvalue $regvalue -regnick $regnick -regtype $regtype
@@ -148,8 +149,24 @@ if ($debing -eq 'E'){
 if ($debing -eq 'D'){
     $regpath =  "HKCU:\SOFTWARE\Policies\Microsoft\Windows\Explorer"
     $regname = "DisableSearchBoxSuggestions"
-    $regvalue = 0
+    $regvalue = 1
     $regnick = "DisableSearchBoxSuggestions"
+    $regtype = 'DWORD'
+    ChangeRegValues -regpath $regpath -regname $regname -regvalue $regvalue -regnick $regnick -regtype $regtype
+}
+if ($delockscreen -eq 'D'){
+    $regpath =  "HKLM:\SOFTWARE\Policies\Microsoft\Windows\Personalization"
+    $regname = "NoLockScreen"
+    $regvalue = 1
+    $regnick = "NoLockScreen"
+    $regtype = 'DWORD'
+    ChangeRegValues -regpath $regpath -regname $regname -regvalue $regvalue -regnick $regnick -regtype $regtype
+}
+if ($delockscreen -eq 'E'){
+    $regpath =  "HKLM:\SOFTWARE\Policies\Microsoft\Windows\Personalization"
+    $regname = "NoLockScreen"
+    $regvalue = 0
+    $regnick = "NoLockScreen"
     $regtype = 'DWORD'
     ChangeRegValues -regpath $regpath -regname $regname -regvalue $regvalue -regnick $regnick -regtype $regtype
 }

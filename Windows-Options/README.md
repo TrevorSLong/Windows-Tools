@@ -13,6 +13,8 @@ This script aims to allow you to easily change some Windows 10/11 options in bul
    * Allows user to disable Windows update from auto-updating.
 ### Disable Bing in the start menu
    * Allows user to disable Bing results in the start menu.
+### Disable lock screen
+   * Allows user to disable the lock screen (the screen that shows the time and a picture, sign in is still required.)
 
 
 
