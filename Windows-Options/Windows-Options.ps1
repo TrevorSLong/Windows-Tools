@@ -4,8 +4,11 @@ $dewidgets = Read-Host "Would you like to disable/enable widgets? E to enable, D
 $decortana = Read-Host "Would you like to disable Cortana for the current user 'D', disable for all users 'A', or to skip hit ENTER:"
 $taskbar = Read-Host "Would you like to move the taskbar? Type 'L' for LEFT, 'C' for CENTER, or ENTER to skip"
 $deupdate = Read-Host "Would you like Enable or Disable Windows Auto-Updates through the registry? E to enable, D to disable, ENTER to skip:"
-$debing = Read-Host "Would you like to remove Bing from the start menu? E to enable, D to disable, ENTER to skip:"
+$debing = Read-Host "Would you like to disable Bing suggestions in the start menu? E to enable, D to disable, ENTER to skip:"
 $delockscreen = Read-Host "Would you like to disable the lock screen? E to enable, D to disable, ENTER to skip:"
+$deverbose = Read-Host "Would you like to enable verbose mode (See documentation)? E to enable, D to disable, ENTER to skip:"
+$delasttab = Read-Host "Would you like to enable last tab opening on the taskbar (see documentation)? E to enable, D to disable, ENTER to skip:"
+$deshaketm = Read-Host "Would you like to disable shake to minimize? E to enable, D to disable, ENTER to skip:"
 Function Test-RegPathExist {
     param(
         [Parameter(Position = 0, Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
@@ -167,6 +170,54 @@ if ($delockscreen -eq 'E'){
     $regname = "NoLockScreen"
     $regvalue = 0
     $regnick = "NoLockScreen"
+    $regtype = 'DWORD'
+    ChangeRegValues -regpath $regpath -regname $regname -regvalue $regvalue -regnick $regnick -regtype $regtype
+}
+if ($deverbose -eq 'E'){
+    $regpath =  "HKLM:\SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Policies\System"
+    $regname = "VerboseStatus"
+    $regvalue = 1
+    $regnick = "VerboseStatus"
+    $regtype = 'DWORD'
+    ChangeRegValues -regpath $regpath -regname $regname -regvalue $regvalue -regnick $regnick -regtype $regtype
+}
+if ($deverbose -eq 'D'){
+    $regpath =  "HKLM:\SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Policies\System"
+    $regname = "VerboseStatus"
+    $regvalue = 1
+    $regnick = "VerboseStatus"
+    $regtype = 'DWORD'
+    ChangeRegValues -regpath $regpath -regname $regname -regvalue $regvalue -regnick $regnick -regtype $regtype
+}
+if ($delasttab -eq 'E'){
+    $regpath =  "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced"
+    $regname = "LastActiveClick"
+    $regvalue = 1
+    $regnick = "LastActiveClick"
+    $regtype = 'DWORD'
+    ChangeRegValues -regpath $regpath -regname $regname -regvalue $regvalue -regnick $regnick -regtype $regtype
+}
+if ($delasttab -eq 'D'){
+    $regpath =  "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced"
+    $regname = "LastActiveClick"
+    $regvalue = 0
+    $regnick = "LastActiveClick"
+    $regtype = 'DWORD'
+    ChangeRegValues -regpath $regpath -regname $regname -regvalue $regvalue -regnick $regnick -regtype $regtype
+}
+if ($deshaketm -eq 'D'){
+    $regpath =  "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced"
+    $regname = "DisallowShaking"
+    $regvalue = 1
+    $regnick = "DisallowShaking"
+    $regtype = 'DWORD'
+    ChangeRegValues -regpath $regpath -regname $regname -regvalue $regvalue -regnick $regnick -regtype $regtype
+}
+if ($deshaketm -eq 'E'){
+    $regpath =  "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced"
+    $regname = "DisallowShaking"
+    $regvalue = 0
+    $regnick = "DisallowShaking"
     $regtype = 'DWORD'
     ChangeRegValues -regpath $regpath -regname $regname -regvalue $regvalue -regnick $regnick -regtype $regtype
 }

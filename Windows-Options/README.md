@@ -15,7 +15,13 @@ This script aims to allow you to easily change some Windows 10/11 options in bul
    * Allows user to disable Bing results in the start menu.
 ### Disable lock screen
    * Allows user to disable the lock screen (the screen that shows the time and a picture, sign in is still required.)
-
+### Enable verbose mode
+   * Allows user to enable verbose mode (shows more detailed status of what the computer is doing when shutting down or starting up)
+### Enable last active tab
+   * If you have grouped tabs on the task bar, when you click on the icon it shows the open window.
+   * This tweak changes it so when you click on the grouped tabs it opens the last open tab instead of the window selector.
+### Disable shake to minimize
+   * Disables shaking a window to minimize all others behind it.
 
 
 ## Running PowerShell Scripts
