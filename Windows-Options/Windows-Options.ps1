@@ -1,9 +1,10 @@
 # Windows11-Options.ps1 - this script aims to make it easy to disable some parts of Windows 11 that are not necessary
 
-$dewidgets = Read-Host "Would you like to disable/enable widgets? Type 'D' to disable and 'E' to enable:"
+$dewidgets = Read-Host "Would you like to disable/enable widgets? E to enable, D to disable, ENTER to skip:"
 $decortana = Read-Host "Would you like to disable Cortana for the current user 'D', disable for all users 'A', or to skip hit ENTER:"
 $taskbar = Read-Host "Would you like to move the taskbar? Type 'L' for LEFT, 'C' for CENTER, or ENTER to skip"
-$deupdate = Read-Host "Would you like Enable or Disable Windows Auto-Updates through the registry? Type E or D or ENTER to skip."
+$deupdate = Read-Host "Would you like Enable or Disable Windows Auto-Updates through the registry? E to enable, D to disable, ENTER to skip:"
+$debing = Read-Host "Would you like to remove Bing from the start menu? E to enable, D to disable, ENTER to skip:"
 Function Test-RegPathExist {
     param(
         [Parameter(Position = 0, Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
@@ -136,7 +137,22 @@ if ($dewidgets -eq 'E'){
     $regtype = 'DWORD'
     ChangeRegValues -regpath $regpath -regname $regname -regvalue $regvalue -regnick $regnick -regtype $regtype
 }
-
+if ($debing -eq 'E'){
+    $regpath =  "HKCU:\SOFTWARE\Policies\Microsoft\Windows\Explorer"
+    $regname = "DisableSearchBoxSuggestions"
+    $regvalue = 1
+    $regnick = "DisableSearchBoxSuggestions"
+    $regtype = 'DWORD'
+    ChangeRegValues -regpath $regpath -regname $regname -regvalue $regvalue -regnick $regnick -regtype $regtype
+}
+if ($debing -eq 'D'){
+    $regpath =  "HKCU:\SOFTWARE\Policies\Microsoft\Windows\Explorer"
+    $regname = "DisableSearchBoxSuggestions"
+    $regvalue = 0
+    $regnick = "DisableSearchBoxSuggestions"
+    $regtype = 'DWORD'
+    ChangeRegValues -regpath $regpath -regname $regname -regvalue $regvalue -regnick $regnick -regtype $regtype
+}
 if ($decortana -eq 'D') {
     Get-AppxPackage *Microsoft.549981C3F5F10* | Remove-AppxPackage
 }

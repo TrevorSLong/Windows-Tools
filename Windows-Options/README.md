@@ -1,5 +1,5 @@
-# Windows11-Options.ps1
-This script aims to allow you to easily change some Windows 11 options in bulk by changing registry entries.
+# Windows-Options.ps1
+This script aims to allow you to easily change some Windows 10/11 options in bulk by changing registry entries.
 
 
 ## Entries it changes:
@@ -8,7 +8,11 @@ This script aims to allow you to easily change some Windows 11 options in bulk b
 ### Cortana
    * Uninstalls Cortana for all users or just the current user
 ### Taskbar Alignment
-   * Allows user to toggle taskbar alignment from Center to Left and back.
+   * Allows user to toggle taskbar alignment from Center to Left and back. (Windows 11)
+### Disable Auto Update
+   * Allows user to disable Windows update from auto-updating.
+### Disable Bing in the start menu
+   * Allows user to disable Bing results in the start menu.
 
 
 
