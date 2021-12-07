@@ -1,5 +1,5 @@
 # Windows11-Options.ps1 - this script aims to make it easy to disable some parts of Windows 11 that are not necessary
-
+$ErrorActionPreference= 'silentlycontinue'
 $dewidgets = Read-Host "Would you like to disable/enable widgets? E to enable, D to disable, ENTER to skip:"
 $decortana = Read-Host "Would you like to disable Cortana for the current user 'D', disable for all users 'A', or to skip hit ENTER:"
 $taskbar = Read-Host "Would you like to move the taskbar? Type 'L' for LEFT, 'C' for CENTER, or ENTER to skip"

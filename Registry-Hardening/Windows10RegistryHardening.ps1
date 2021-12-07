@@ -1,6 +1,6 @@
 ## This script handles the hardening of a Windows 10 computer
 #Written by Trevor Long, last modified 7-19-21
-
+$ErrorActionPreference= 'silentlycontinue'
 $null = Read-Host '
 README:
 ---------------------------------------------------------------------------------------------------------------------------------

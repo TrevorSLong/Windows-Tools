@@ -1,6 +1,6 @@
 # Win10-Remove-Bloatware.ps1 automates the removal of bloatware installed on Windows 10
 # Written by Trevor Long, last modified 7-29-21
-
+$ErrorActionPreference= 'silentlycontinue'
 $doall = Read-Host "Would you like to uninstall bloatware by level or go one-by-one? Type the number 1-3 to choose a level (see documentation) or ENTER for One-By-One"
 
 Function Remove-AppAuto {

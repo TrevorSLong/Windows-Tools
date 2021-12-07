@@ -1,6 +1,5 @@
-# Disable-AutoUpdate.ps1 - this script aims to make it easy to disable Windows auto update
+#Admin-AutoLogin.ps1 allows the user to easily enable admin auto login
 $ErrorActionPreference= 'silentlycontinue'
-$deupdate = Read-Host "Would you like Enable or Disable Windows Auto-Updates through the registry? Type E or D then hit enter. "
 Function Test-RegPathExist {
     param(
         [Parameter(Position = 0, Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
@@ -117,19 +116,61 @@ Function ChangeRegValues {
     }
 }
 
-if ($deupdate -eq 'D'){
-    $regpath =  "HKLM:\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\AU"
-    $regname = "NoAutoUpdate"
+Write-Host "------------------------------------------------------"
+Write-Host "              Enable Admin Auto Login                 "
+Write-Host "------------------------------------------------------"
+Write-Host "This script allows the user to easily add the ability to automatically login to an admin account at startup."
+Write-Host "Please note: you will need to rerun the script if you change your password."
+Write-Host "Please also note that this will not log the user in if the computer has locked after already being on."
+$accept = Read-Host "By using this script you accept the all risks involved with changing registry values. Type 'A' and hit enter to accept and continue."
+
+if ($accept -eq 'A'){
+
+    $deadmin = Read-Host "Would you like to Enable or Disable Admin Auto Login. Please type E or D, then hit enter:"
+
+    if ($deadmin -eq 'E'){
+
+    Write-Host "The username and password will need to be provided, and will need to be an exact match."
+    $whoami = whoami.exe
+    $currentuser = $whoami.Split("\") | Select-Object -Last 1
+    Write-Host "The currently logged in user has a username of: $currentuser"
+    $username = Read-Host "Please type the username exactly (if logging in to this account type the username above):"
+    $password = Read-Host "Please type the password for this user:"
+
+    $regpath =  "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon"
+    $regname = "DefaultUserName"
+    $regvalue = $username
+    $regnick = "DefaultUserName"
+    $regtype = 'STRING'
+    ChangeRegValues -regpath $regpath -regname $regname -regvalue $regvalue -regnick $regnick -regtype $regtype
+
+    $regpath =  "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon"
+    $regname = "DefaultPassword"
+    $regvalue = $password
+    $regnick = "DefaultPassword"
+    $regtype = 'STRING'
+    ChangeRegValues -regpath $regpath -regname $regname -regvalue $regvalue -regnick $regnick -regtype $regtype
+
+    $regpath =  "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon"
+    $regname = "AutoAdminLogon"
     $regvalue = 1
-    $regnick = "NoAutoUpdate"
-    $regtype = 'DWORD'
+    $regnick = "AutoAdminLogon"
+    $regtype = 'STRING'
     ChangeRegValues -regpath $regpath -regname $regname -regvalue $regvalue -regnick $regnick -regtype $regtype
-}
-if ($deupdate -eq 'E'){
-    $regpath =  "HKLM:\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\AU"
-    $regname = "NoAutoUpdate"
+
+    Read-Host "Auto Admin Login enabled! Please restart to verify and apply changes! Press enter to exit."
+    }
+
+    if ($deadmin -eq 'D'){
+
+    $regpath =  "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon"
+    $regname = "AutoAdminLogon"
     $regvalue = 0
-    $regnick = "NoAutoUpdate"
-    $regtype = 'DWORD'
+    $regnick = "AutoAdminLogon"
+    $regtype = 'STRING'
     ChangeRegValues -regpath $regpath -regname $regname -regvalue $regvalue -regnick $regnick -regtype $regtype
+
+    Read-Host "Auto Admin Login disabled! Please restart to verify and apply changes! Press enter to exit."
+    }
+
 }

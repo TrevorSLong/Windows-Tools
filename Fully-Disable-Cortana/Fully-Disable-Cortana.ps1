@@ -1,6 +1,6 @@
 #Fully-Disable-Cortana.ps1
 #Disables Cortana on Windows 10 via the registry
-
+$ErrorActionPreference= 'silentlycontinue'
 Function Test-RegistryValue {
     param(
         [Parameter(Position = 0, Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
