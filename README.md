@@ -2,36 +2,49 @@
 This repository contains batch files used to automate computer cleanup using built in Windows utilities. Made for Windows 10, will also probably work on Windows 8, 8.1, and 11. All scripts **Must be run as Administrator**. If you need help running these scripts scroll down to the directions.
 
 # Scripts:
+### Admin-AutoLogin
+   * Adds registry keys to allow an admin account with a password to autologin on startup.
+   * This is a .ps1 file, run PowerShell as Admin or follow the directions below.
 ### Cleanup-Script
    * Designed for Windows 10
    * Cleanup script to help optimize Windows performance
    * This is a .bat file, right click and run as administrator
-
-### Windows-Update-Cache-Cleanup
-   * Stops Windows services and deletes the Windows update cache to fix issues with Windows update
-   * This is a .bat file, right click and run as administrator
-
-### Registry-Hardening
-   * This script changes registry values to harden a Windows installation.
-   * This is a .ps1 file, run PowerShell as Admin or follow the directions below.
-
+### Disable-Windows-Auto-Update
+   * Enables/Disables Windows Auto-Update through the registry
 ### Fully-Disable-Cortana
    * This is designed for Windows 10
    * Disables Cortana through the registry
    * This is a .ps1 file, run PowerShell as Admin or follow the directions below.
-
+### Registry-Hardening
+   * This script changes registry values to harden a Windows installation.
+   * This is a .ps1 file, run PowerShell as Admin or follow the directions below.
 ### Remove-Bloatware
    * Automatically removes Windows bloatware using levels listed on the Remove-Bloatware README
    * Optional one-by-one removal of bloatware for better customization
-
-### Disable-Windows-Auto-Update
-   * Enables/Disables Windows Auto-Update through the registry
-
-### Windows11-Options
-   * Enables/Disables Windows Auto-Update through the registry
-   * Enables/Disables the widgets panel and removes it from the taskbar
+### Windows-Update-Cache-Cleanup
+   * Stops Windows services and deletes the Windows update cache to fix issues with Windows update
+   * This is a .bat file, right click and run as administrator
+### Windows-Options
+* ##### Widgets
+   * Disables the widgets panel and removes it from the taskbar
+* ##### Cortana
    * Uninstalls Cortana for all users or just the current user
-   * Allows user to toggle taskbar alignment from Center to Left and back. (Through registry, this can also be done in settings)
+* ##### Taskbar Alignment
+   * Allows user to toggle taskbar alignment from Center to Left and back. (Windows 11)
+* ##### Disable Auto Update
+   * Allows user to disable Windows update from auto-updating.
+* ##### Disable Bing in the start menu
+   * Allows user to disable Bing results in the start menu.
+* ##### Disable lock screen
+   * Allows user to disable the lock screen (the screen that shows the time and a picture, sign in is still required.)
+* ##### Enable verbose mode
+   * Allows user to enable verbose mode (shows more detailed status of what the computer is doing when shutting down or starting up)
+* ##### Enable last active tab
+   * If you have grouped tabs on the task bar, when you click on the icon it shows the open window.
+   * This tweak changes it so when you click on the grouped tabs it opens the last open tab instead of the window selector.
+* ##### Disable shake to minimize
+   * Disables shaking a window to minimize all others behind it.
+
 
 # Other:
 
