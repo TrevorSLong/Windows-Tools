@@ -14,9 +14,9 @@ Write-Host "|------------------------------------------------------------------|
 
 Read-Host "To accept the risk of using these scripts type 'A' and hit ENTER."
 
-Write-Host "Welcome to Windows-Tools! Choose as many options for tools to run, then hit ENTER."
+Write-Host "Welcome to Windows-Tools! Choose the tool to run, then hit ENTER."
 Write-Host "Please note: all folders must be present and in their original locations!"
-Write-Host "Ex: 'a,c,d' then hit ENTER."
+Write-Host "Ex: 'a' then hit ENTER."
 Write-Host "Please note, Cleanup Script can not be run from this all-in-one tool."
 Write-Host ""
 Write-Host "A) Disable Windows Auto Update"
@@ -25,7 +25,7 @@ Write-Host "C) Registry Hardening"
 Write-Host "D) Remove Bloatware"
 Write-Host "E) Windows options"
 Write-Host "F) Windows Update Cleanup"
-$tools = Read-Host "Enter the letters here:"
+$tools = Read-Host "Enter the letter here:"
 
 if ($tools -contains 'a'){
     & "$PSScriptRoot\Disable-Windows-Auto-Update\Disable-AutoUpdate.ps1"
